@@ -1,0 +1,218 @@
+/* reset & box sizing */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* base */
+html, body {
+    height: 100%;
+}
+body{
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: #000;
+    color: #e7e7e7;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* background images / blur */
+.img-gradient{
+    position: absolute;
+    top: 0;
+    right: 10%;
+    width: 60%;
+    max-width: 900px;
+    opacity: 0.25; /* fixed from 25 */
+    z-index: -2;
+    pointer-events: none;
+}
+
+.layer-blur{
+    width: 34rem;
+    height: 34rem;
+    position: absolute;
+    top: 12%;
+    right: -4rem;
+    box-shadow: 0 0 200px rgba(255,255,255,0.12);
+    transform: rotate(30deg); /* corrected rotate */
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* container */
+.container{
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    /* allow content to grow and page to scroll */
+    overflow: visible; /* changed from hidden */
+    min-height: 100vh;
+}
+
+/* header */
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem; /* reduced big padding */
+    z-index: 10;
+}
+
+header h1{
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 300;
+}
+
+/* nav */
+nav{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-left: 0; /* removed negative margin */
+}
+
+nav a {
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
+    transition: color 0.2s ease; /* fixed 0,2s -> 0.2s */
+    text-decoration: none;
+    color: #e7e7e7;
+}
+
+nav a:hover{
+    color: #fff;
+}
+
+/* sign button */
+.btn-signing{
+    background-color: #a7a7a7;
+    color: #000;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease; /* fixed */
+    cursor: pointer;
+}
+
+.btn-signing:hover{
+    background-color: #ffffff;
+}
+
+/* main layout */
+main{
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 6rem);
+    padding: 2rem 0;
+}
+
+.content{
+    max-width: 40rem;
+    margin-left: 10%;
+    z-index: 2;
+}
+
+/* tag box: use padding (not fixed height) so it expands with text */
+.tag-box{
+    display: inline-block;
+    border-radius: 50px;
+    background: linear-gradient(90deg, blueviolet, rgb(73,14,140), rgb(14,184,181));
+    background-size: 200% 100%;
+    animation: animationGradient 2.5s linear infinite;
+    box-shadow: 0 0 15px rgba(255,255,255,0.08);
+    padding: 0.45rem 1rem;
+}
+
+@keyframes animationGradient{
+    to{
+        background-position: 200% 0;
+    }
+}
+
+/* inner tag: keep it simple and centered */
+.tag-box .tag{
+    background-color: transparent;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+}
+.tag-box .tag:hover{
+    color: lightblue;
+}
+
+/* big heading - responsive */
+.content h1{
+    font-size: clamp(2rem, 7vw, 5rem); /* responsive so it won't overflow */
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin: 1.5rem 0; /* reduced top margin to avoid overlap */
+    line-height: 1.05;
+    text-shadow: 0 0 10px rgba(5,130,214,0.88);
+}
+
+/* description - fixed name */
+.description{
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    max-width: 35rem;
+    color: gray;
+    margin-top: 1rem;
+}
+
+.buttons{
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-get-started{
+    text-decoration: none;
+    border: 1px solid gray;
+    padding: 0.7rem 1.2rem;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    transition: background-color 0.2s ease;
+    color: #e7e7e7;
+}
+
+.btn-get-started:hover{
+    background-color: rgba(0,255,255,0.08);
+}
+
+.btn-signing-main{
+    text-decoration: none;
+    background-color: #fff;
+    color: #000;
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    transition: background-color 0.2s ease;
+}
+
+.btn-signing-main:hover{
+    background-color: #d3d3d3;
+}
+
+/* responsive tweaks for small screens */
+@media (max-width: 768px) {
+    header{ padding: 1rem; flex-wrap: wrap; gap: 1rem; }
+    .content{ margin-left: 0; padding: 0 1rem; }
+    .img-gradient{ display: none; } /* hide to save space on small screens */
+    .layer-blur{ display: none; }
+    nav{ order: 3; width: 100%; justify-content: center; }
+}
